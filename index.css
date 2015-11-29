@@ -80,3 +80,34 @@ input {
 	margin-top: 5%;
 	background-color: #dddddd;
 }
+
+/*Right Block --> Posts*/
+.postsArea>ul {
+	height: 100%;
+	list-style: none;
+	padding: 20px 25px;
+}
+.postsArea>ul>li {
+	height: 20%;
+	margin-bottom: px;
+}
+
+.profilePic {
+	width: 68px;
+	height: 68px;
+	background-color: black;
+	vertical-align: middle;
+	border-radius: 10%;
+}
+
+.postText {
+	width: 82%;
+	padding-left: 20px;
+	vertical-align: top;
+}
+.postText>i {
+	color: #aaaaaa;
+}
+.postText>p {
+   margin-top: 10px;
+}
