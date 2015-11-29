@@ -48,6 +48,10 @@ textarea {
 	height: 75%;
 	text-align: top;
 }
+input {
+	margin-right: 5%;
+	margin-top: 10px;
+}
 
 /*Right Block*/
 
