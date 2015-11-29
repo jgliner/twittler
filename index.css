@@ -2,7 +2,7 @@ body {
 	font-family: "Open Sans", helvetica, sans-serif;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4, h5 {
 	color: white;
 	line-height: 15px;
 }
@@ -62,11 +62,11 @@ input {
 .trendingBox {
 	margin-top: 50px;
 	margin-left: 5%;
-	height: 100px;
+	height: 55px;
 	width: 90%;
 	background-color: gold;
 }
-.trendingBox>h3 {
+.trendingBox>h5 {
 	height: 100%;
 	margin: 0;
 	padding: 15px;
@@ -75,11 +75,8 @@ input {
 
 .postsArea {
 	width: 90%;
-	height: 65%;
+	height: 72vh;
 	margin-left: 5%;
-	margin-top: 10%;
-	background-color: gold;
-}
-.postsArea>ul {
-	list-style: none;
+	margin-top: 5%;
+	background-color: #dddddd;
 }
