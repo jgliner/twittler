@@ -16,8 +16,8 @@ window.users = Object.keys(streams.users);
 // utility function for adding tweets to our data structures
 var addTweet = function(newTweet){
   var username = newTweet.user;
-  streams.users[username].push(newTweet);
-  streams.home.push(newTweet);
+  streams.users[username].unshift(newTweet);
+  streams.home.unshift(newTweet);
 };
 
 // utility function
@@ -37,12 +37,15 @@ var randomMessage = function(){
   return [randomElement(opening), randomElement(verbs), randomElement(objects), randomElement(nouns), randomElement(tags)].join(' ');
 };
 
+var tweetID = 100;
 // generate random tweets on a random schedule
 var generateRandomTweet = function(){
   var tweet = {};
   tweet.user = randomElement(users);
   tweet.message = randomMessage();
   tweet.created_at = new Date();
+  tweet.id = tweetID;
+  tweetID++;
   addTweet(tweet);
 };
 
