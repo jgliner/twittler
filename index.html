@@ -51,7 +51,7 @@
         var postsListHeight = $('.postsList').height();
         while(totalCurrPostHeight < postsListHeight - 50) {
           var postsListHeight = $('.postsList').height();
-          var postTextInfo, postHeight;
+          var postTextInfo, postHeight, postTextHeight, postMargin;
           var tweet = streams.home[index];
 
           $('.postsList').append(`
@@ -69,7 +69,13 @@
           ;
           postTextInfo = $('.postsList').children('li');
           postHeight = $(postTextInfo[postTextInfo.length-1]).find('.postText').height();
-          totalCurrPostHeight += postHeight;
+          postTextHeight = $(postTextInfo[postTextInfo.length-1]).find('.postText p').height();
+          postMargin = (postHeight/postTextHeight)*8;
+
+          $(postTextInfo[postTextInfo.length-1]).find('p').css('margin-bottom', postMargin+'px');
+          totalCurrPostHeight += postHeight+postMargin;
+
+          console.log()
           index--;
         }
       });
