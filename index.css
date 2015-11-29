@@ -35,6 +35,20 @@ h1, h2, h3 {
 	margin-top: 50%;
 }
 
+.formContainer {
+	height: 50%;
+}
+form {
+	margin-top: 10%;
+	height: 75%;
+}
+textarea {
+	margin-left: 5%;
+	width: 90%;
+	height: 75%;
+	text-align: top;
+}
+
 /*Right Block*/
 
 .postHeader {
