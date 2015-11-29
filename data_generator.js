@@ -55,6 +55,9 @@ for(var i = 0; i < 10; i++){
 
 var scheduleNextTweet = function(){
   generateRandomTweet();
+  $.event.trigger({
+    type: 'addPost'
+  })
   setTimeout(scheduleNextTweet, Math.random() * 1500);
 };
 scheduleNextTweet();
