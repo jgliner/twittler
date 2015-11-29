@@ -49,20 +49,21 @@
         var index = streams.home.length - 1;
         var totalCurrPostHeight = 0;
         var postsListHeight = $('.postsList').height();
-        while(totalCurrPostHeight < postsListHeight - 50) {
+        
+        while(totalCurrPostHeight < postsListHeight+50) {
           var postsListHeight = $('.postsList').height();
           var postTextInfo, postHeight, postTextHeight, postMargin;
           var tweet = streams.home[index];
 
-          $('.postsList').append(`
+          $('.postsList').prepend(`
             <li>
               <div class="col-xs-1 profilePic"></div>
               <div class="col-xs-9 postText">
               <b>@${tweet.user}</b>
               <br>
-              <i>November 28, 2015 | 8:30 PM</i>
+              <i>${tweet.created_at}</i>
               <br>
-              <p>${tweet.message}</p>
+              <p>${tweet.message} || ${tweet.id}</p>
             </div>
             </li>
           `)
@@ -70,14 +71,15 @@
           postTextInfo = $('.postsList').children('li');
           postHeight = $(postTextInfo[postTextInfo.length-1]).find('.postText').height();
           postTextHeight = $(postTextInfo[postTextInfo.length-1]).find('.postText p').height();
-          postMargin = (postHeight/postTextHeight)*8;
+          postMargin = (postHeight/postTextHeight)*5;
 
           $(postTextInfo[postTextInfo.length-1]).find('p').css('margin-bottom', postMargin+'px');
           totalCurrPostHeight += postHeight+postMargin;
 
-          console.log()
           index--;
         }
+
+        
       });
 
     </script>
