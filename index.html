@@ -37,7 +37,7 @@
       </div>
       <div class="postsArea">
         <ul class="postsList">
-
+          <!-- Posts from data_generator.js inserted here -->
         </ul>
       </div>
     </div>
@@ -47,8 +47,13 @@
       $(document).ready(function(){
 
         var index = streams.home.length - 1;
-        while(index >= 0){
+        var totalCurrPostHeight = 0;
+        var postsListHeight = $('.postsList').height();
+        while(totalCurrPostHeight < postsListHeight - 50) {
+          var postsListHeight = $('.postsList').height();
+          var postTextInfo, postHeight;
           var tweet = streams.home[index];
+
           $('.postsList').append(`
             <li>
               <div class="col-xs-1 profilePic"></div>
@@ -60,10 +65,13 @@
               <p>${tweet.message}</p>
             </div>
             </li>
-        `);
-          index -= 1;
+          `)
+          ;
+          postTextInfo = $('.postsList').children('li');
+          postHeight = $(postTextInfo[postTextInfo.length-1]).find('.postText').height();
+          totalCurrPostHeight += postHeight;
+          index--;
         }
-
       });
 
     </script>
