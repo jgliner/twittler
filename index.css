@@ -58,3 +58,17 @@ input {
 .postHeader {
 	margin-top: 150px;
 }
+
+.trendingBox {
+	margin-top: 50px;
+	margin-left: 5%;
+	height: 100px;
+	width: 90%;
+	background-color: gold;
+}
+.trendingBox>h3 {
+	height: 100%;
+	margin: 0;
+	padding: 15px;
+	padding-bottom: 0;
+}
