@@ -53,6 +53,15 @@ input {
 	margin-top: 10px;
 }
 
+.autoUpdateCheckbox {
+	padding-top: 40px;
+}
+.checkboxText {
+	color: white;
+	font-size: 15px;
+	margin-left: 2%;
+}
+
 /*Right Block*/
 
 .postHeader {
@@ -86,6 +95,7 @@ input {
 	height: 100%;
 	list-style: none;
 	padding: 20px 25px;
+	overflow: scroll;
 }
 
 .profilePic {
