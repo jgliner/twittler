@@ -19,7 +19,7 @@
         <h3 align="center">What's on Your Mind?</h3>
       </div>
       <div class="container formContainer" style="width:initial">
-        <form>
+        <form class="newPostForm">
           <textarea type="text" name="createPost" placeholder="Start typing here!"></textarea>
           <input type="submit" class='pull-right'>
         </form>
@@ -95,6 +95,8 @@
         $(window).on('addPost', function() {
           var tweet = streams.home[index+1];
 
+          var oldScroll = $('.postsList').scrollTop();
+
           // if box unchecked, set following post css to not display
           $('.autoUpdate')[0].checked === false ? tweet.hidden = 'style="display: none;"' : tweet.hidden = 'style="display: block;"';
 
@@ -111,6 +113,11 @@
             </li>
           `)
           ;
+
+          if (oldScroll) {
+            var newPostHeight = $('.postsList li:last .postText').outerHeight();
+            $('.postsList').scrollTop(oldScroll+newPostHeight-8)
+          }
         })
 
         // change all post css to display: block (ensures nothing was skipped while box was unchecked)
