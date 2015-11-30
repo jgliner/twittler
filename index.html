@@ -49,6 +49,29 @@
       </div>
     </div>
 
+        <!-- Modal -->
+    <div id="userPosts" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">All Past Posts by @</h4>
+          </div>
+          <div class="modal-body">
+            <ul class="userPostsList">
+               <!-- User posts inserted here -->
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
     <script>
 
       $(document).ready(function(){
@@ -69,7 +92,7 @@
             <li>
               <div class="col-xs-1 profilePic"></div>
               <div class="col-xs-9 postText">
-              <b>@${tweet.user}</b>
+              <a class="username">@${tweet.user}</a>
               <br>
               <i>${tweet.created_at}</i>
               <br>
@@ -104,7 +127,7 @@
             <li ${tweet.hidden}>
               <div class="col-xs-1 profilePic"></div>
               <div class="col-xs-9 postText">
-              <b>@${tweet.user}</b>
+              <a class="username">@${tweet.user}</a>
               <br>
               <i>${tweet.created_at}</i>
               <br>
@@ -126,6 +149,22 @@
             $('li').css('display', 'block')
           }
         })
+
+        $('.postsList').on('click', 'li .username', function() {
+          var username = $(this).text().substr(1);
+          var userPosts = streams.users[username];
+          $('#userPosts').modal('show');
+          $('.modal-title').append(username);
+          for (var i = 0; i < userPosts.length; i++) {
+            $('.userPostsList').append(`
+              <b>--${userPosts[i].created_at}</b>
+              <br>
+              <br>
+              <p>${userPosts[i].message} ${userPosts[i].id}</p>
+              <hr>
+            `)
+          }
+        });
       });
 
     </script>
