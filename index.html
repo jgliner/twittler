@@ -53,15 +53,18 @@
 
       $(document).ready(function(){
 
+        // init streams length, total height of post area, and height of all current posts
         var index = streams.home.length - 1;
         var totalCurrPostHeight = 0;
         var postsListHeight = $('.postsList').height();
         
+        // display initial posts
         while(totalCurrPostHeight < postsListHeight+50) {
           var postsListHeight = $('.postsList').height();
           var postTextInfo, postHeight, postTextHeight, postMargin;
           var tweet = streams.home[index];
 
+          // create dynamic post template
           $('.postsList').prepend(`
             <li>
               <div class="col-xs-1 profilePic"></div>
@@ -70,38 +73,50 @@
               <br>
               <i>${tweet.created_at}</i>
               <br>
-              <p>${tweet.message}</p>
+              <p>${tweet.message} >> ${tweet.id}</p>
             </div>
             </li>
           `)
           ;
-          postTextInfo = $('.postsList').children('li');
-          postHeight = $(postTextInfo[postTextInfo.length-1]).find('.postText').height();
-          postTextHeight = $(postTextInfo[postTextInfo.length-1]).find('.postText p').height();
-          postMargin = (postHeight/postTextHeight)*5;
+          postTextInfo = $('.postsList').children('li'); // alias for every post thus far
 
+          postHeight = $(postTextInfo[postTextInfo.length-1]).find('.postText').height(); // height of current post in px
+          postTextHeight = $(postTextInfo[postTextInfo.length-1]).find('.postText p').height(); // height of current post minus username and date
+          postMargin = (postHeight/postTextHeight)*5; // calculate margin between posts
+
+          // apply margins and calculate height of all posts thus far
           $(postTextInfo[postTextInfo.length-1]).find('p').css('margin-bottom', postMargin+'px');
           totalCurrPostHeight += postHeight+postMargin;
 
           index--;
         }
 
+        // custom jquery event listener for adding to array
         $(window).on('addPost', function() {
-          if ($('.autoUpdate')[0].checked === true) {
-            var tweet = streams.home[0];
-            $('.postsList').prepend(`
-              <li>
-                <div class="col-xs-1 profilePic"></div>
-                <div class="col-xs-9 postText">
-                <b>@${tweet.user}</b>
-                <br>
-                <i>${tweet.created_at}</i>
-                <br>
-                <p>${tweet.message}</p>
-              </div>
-              </li>
-            `)
-            ;
+          var tweet = streams.home[index+1];
+
+          // if box unchecked, set following post css to not display
+          $('.autoUpdate')[0].checked === false ? tweet.hidden = 'style="display: none;"' : tweet.hidden = 'style="display: block;"';
+
+          $('.postsList').prepend(`
+            <li ${tweet.hidden}>
+              <div class="col-xs-1 profilePic"></div>
+              <div class="col-xs-9 postText">
+              <b>@${tweet.user}</b>
+              <br>
+              <i>${tweet.created_at}</i>
+              <br>
+              <p>${tweet.message} || ${tweet.id}</p>
+            </div>
+            </li>
+          `)
+          ;
+        })
+
+        // change all post css to display: block (ensures nothing was skipped while box was unchecked)
+        $('.autoUpdate').change(function() {
+          if (this.checked) {
+            $('li').css('display', 'block')
           }
         })
       });
