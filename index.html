@@ -177,6 +177,13 @@
             `)
           }
         });
+
+        $('#userPosts').on('show.bs.modal', function() {
+          $('.leftBlock, .rightBlock').toggleClass('blur');
+        })
+        $('#userPosts').on('hide.bs.modal', function() {
+          $('.leftBlock, .rightBlock').toggleClass('blur');
+        })
       });
 
     </script>
