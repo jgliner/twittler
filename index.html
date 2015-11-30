@@ -153,6 +153,10 @@
         $('.postsList').on('click', 'li .username', function() {
           var username = $(this).text().substr(1);
           var userPosts = streams.users[username];
+
+          $('.modal-title').text('All Past Posts by @')
+          $('.userPostsList').html('');
+
           $('#userPosts').modal('show');
           $('.modal-title').append(username);
           for (var i = 0; i < userPosts.length; i++) {
