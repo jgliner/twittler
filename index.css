@@ -13,6 +13,29 @@ a {
 	cursor: pointer;
 }
 
+hr {
+	border-top: 1px solid #ccc;
+}
+
+.navbar {
+	border: none;
+}
+.navbar-nav {
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.navbar-nav li a {
+	color: #ffffff !important;
+}
+.navbar-nav li:not(:last-child) a {
+	border-right: 1px solid white;
+}
+.navbar-nav li a:hover {
+	color: #808080 !important;
+}
+
 /*BG*/
 
 .leftBlock, .rightBlock {
@@ -133,6 +156,11 @@ input {
 
 /*User Post Modal*/
 
+.modal-content {
+	background: rgba(255,255,255,0.9);
+	box-shadow: 0px 5px 15px rgba(48,48,72,1);
+}
+
 .modal {
 	text-align: center;
 	padding: 0!important;
@@ -154,6 +182,10 @@ input {
 	display: inline-block;
 	text-align: center;
 	vertical-align: middle;
+}
+
+.modal-header {
+	border-bottom: 1px solid #aaa;
 }
 
 .modal-body {

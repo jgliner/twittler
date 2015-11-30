@@ -37,7 +37,13 @@
       <div class="col-xs-4 logoContainer">
         <img src="logo.png" class='logo'>
       </div>
-      <div class="col-xs-offset-1 col-xs-7 topBar"></div>
+      <div class="col-xs-offset-1 col-xs-7 topBar navbar navbar-default">
+        <ul class="nav navbar-nav">
+          <li><a>Change Theme</a></li>
+          <li><a>About</a></li>
+          <li><a>Sign In</a></li>
+        </ul>
+      </div>
       <div class="postHeader">
         <h1 align="center">Newest Twittles</h1>
       </div>
@@ -98,7 +104,7 @@
               <br>
               <i>${tweet.created_at}</i>
               <br>
-              <p>${tweet.message} >> ${tweet.id}</p>
+              <p>${tweet.message}</p>
             </div>
             </li>
           `)
@@ -133,7 +139,7 @@
               <br>
               <i>${tweet.created_at}</i>
               <br>
-              <p>${tweet.message} || ${tweet.id}</p>
+              <p>${tweet.message}</p>
             </div>
             </li>
           `)
@@ -166,7 +172,7 @@
               <b>--${userPosts[i].created_at}</b>
               <br>
               <br>
-              <p>${userPosts[i].message} ${userPosts[i].id}</p>
+              <p>${userPosts[i].message}</p>
               <hr>
             `)
           }
