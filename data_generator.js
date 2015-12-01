@@ -45,6 +45,7 @@ var generateRandomTweet = function(){
   tweet.user = randomElement(users.slice(0, -1));
   tweet.message = randomMessage();
   tweet.created_at = new Date();
+  tweet.time_since = moment(tweet.created_at).fromNow();
   tweet.id = tweetID;
   tweetID++;
   addTweet(tweet);
