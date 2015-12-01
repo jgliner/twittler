@@ -185,6 +185,22 @@
           }
         });
 
+        $('.newPostForm').bind('submit keydown', function(e) {
+          if ((event.type === 'keydown' && e.which === 13) || event.type === 'submit') {
+            e.preventDefault();
+            var userTweet = $(this).find('textarea').val();
+            var tweet = {};
+            tweet.user = 'me';
+            tweet.message = userTweet;
+            tweet.created_at = new Date();
+            tweet.id = tweetID;
+            tweetID++;
+            console.log(tweet)
+            addTweet(tweet);
+            this.reset();
+          }
+        });
+
         $('#userPosts').on('show.bs.modal', function() {
           $('.leftBlock, .rightBlock').toggleClass('blur');
         })
