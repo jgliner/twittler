@@ -12,11 +12,24 @@ streams.users.sharksforcheap = [];
 streams.users.mracus = [];
 streams.users.douglascalhoun = [];
 streams.users.me = [];
+streams.hashtags = {};
 window.users = Object.keys(streams.users);
 
 // utility function for adding tweets to our data structures
 var addTweet = function(newTweet){
   var username = newTweet.user;
+  var hashtag = newTweet.message.match(/#\w+$/g);
+  if (hashtag) {
+    hashtag = hashtag.join('').substr(1)
+    newTweet.hashtag = hashtag;
+    if (streams.hashtags[hashtag] === undefined) {
+      streams.hashtags[hashtag] = [];
+      $.event.trigger({
+        type: 'newHashtag'
+      });
+    }
+    streams.hashtags[hashtag].push(newTweet);
+  }
   streams.users[username].unshift(newTweet);
   streams.home.unshift(newTweet);
 };

@@ -73,7 +73,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">All Past Posts by @</h4>
+            <h4 class="modal-title"></h4>
           </div>
           <div class="modal-body">
             <ul class="userPostsList">
@@ -117,6 +117,7 @@
             </li>
           `)
           ;
+
           postTextInfo = $('.postsList').children('li'); // alias for every post thus far
 
           postHeight = $(postTextInfo[postTextInfo.length-1]).find('.postText').height(); // height of current post in px
@@ -165,6 +166,13 @@
           }
         })
 
+        $(window).on('newHashtag', function() {
+            $('.trendingBox').children('a').remove();
+            for (key in streams.hashtags) {
+            $('.trendingBox').append(`<a class='trending'>#${key}</a>     `)
+            }
+        })
+
         // change all post css to display: block (ensures nothing was skipped while box was unchecked)
         $('.autoUpdate').change(function() {
           if (this.checked) {
@@ -192,6 +200,25 @@
           }
         });
 
+         $('.trendingBox').on('click', '.trending', function() {
+          var hashtag = $(this).text().substr(1);
+          var hashtagPosts = streams.hashtags[hashtag];
+
+          $('.userPostsList').html('');
+
+          $('#userPosts').modal('show');
+          $('.modal-title').text(`#${hashtag}`);
+          for (var i = 0; i < hashtagPosts.length; i++) {
+            $('.userPostsList').append(`
+              <b>--${hashtagPosts[i].time_since}</b>
+              <br>
+              <br>
+              <p>${hashtagPosts[i].message}</p>
+              <hr>
+            `)
+          }
+        });
+
         $('.newPostForm').bind('submit keydown', function(e) {
           if ((event.type === 'keydown' && e.which === 13) || event.type === 'submit') {
             e.preventDefault();
@@ -209,10 +236,10 @@
 
         $('#userPosts').on('show.bs.modal', function() {
           $('.leftBlock, .rightBlock').toggleClass('blur');
-        })
+        });
         $('#userPosts').on('hide.bs.modal', function() {
           $('.leftBlock, .rightBlock').toggleClass('blur');
-        })
+        });
       });
 
     </script>
